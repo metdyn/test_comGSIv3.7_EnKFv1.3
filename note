@@ -1,0 +1,37 @@
+libsrc/w3nco/w3unpk77.f:      DATA  HDR1/'CLAT CLON ACAV GSDP QMRK SAID YEAR '/
+libsrc/GSD/gsdcloud/CMakeLists.txt:if(BUILD_GSDCLOUD_ARW)
+libsrc/GSD/gsdcloud/CMakeLists.txt:  set_source_files_properties( ${GSDCLOUD_SRC} COMPILE_FLAGS ${GSDCLOUD_Fortran_FLAGS})
+libsrc/GSD/gsdcloud/CMakeLists.txt:  add_library( ${gsdcloud} STATIC ${GSDCLOUD_SRC} )
+libsrc/GSD/gsdcloud/CMakeLists.txt:  set_target_properties( ${gsdcloud} PROPERTIES Fortran_MODULE_DIRECTORY ${CMAKE_INCLUDE_OUTPUT_DIRECTORY} )
+libsrc/GSD/gsdcloud/CMakeLists.txt:  message("HEY GSD Cloud analysis lib is called ${gsdcloud}")
+libsrc/GSD/gsdcloud4nmmb/diff.sh:  diff $iflnm ../gsdcloud_old/$iflnm >> ttt
+libsrc/GSD/gsdcloud4nmmb/makefile:LIB = ./libgsdcloud.a
+CMakeLists.txt:  option(BUILD_GSDCLOUD_ARW "Build the GSD cloud analysis " OFF)
+CMakeLists.txt:  if(BUILD_GSDCLOUD_ARW)
+CMakeLists.txt:    set(GSDCLOUD_DIR "${CMAKE_SOURCE_DIR}/libsrc/GSD/gsdcloud")
+CMakeLists.txt:    set(gsdcloud gsdcloud_arw)
+CMakeLists.txt:    add_subdirectory(libsrc/GSD/gsdcloud)
+CMakeLists.txt:    set(GSDCLOUD_LIBRARY ${gsdcloud} )
+CMakeLists.txt:  else(BUILD_GSDCLOUD_ARW)
+CMakeLists.txt:    set(GSDCLOUD_LIBRARY "")
+CMakeLists.txt:  endif(BUILD_GSDCLOUD_ARW)
+cmake/Modules/setCompilerFlags.cmake:  if( BUILD_GSDCLOUD_ARW )
+cmake/Modules/setCompilerFlags.cmake:    set( GSDCLOUDOPT "-DRR_CLOUDANALYSIS" CACHE INTERNAL "" )
+cmake/Modules/setCompilerFlags.cmake:    set( GSDCLOUDOPT "" CACHE INTERNAL "" )
+cmake/Modules/setCompilerFlags.cmake:  endif(BUILD_GSDCLOUD_ARW)
+cmake/Modules/setCompilerFlags.cmake:      set(GSI_Fortran_FLAGS "-DPOUND_FOR_STRINGIFY -traceback -O3 -fp-model source -convert big_endian -assume byterecl -implicitnone -D_REAL8_ ${GSDCLOUDOPT} ${OMPFLAG} ${MPI_Fortran_COMPILE_FLAGS}" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:      set(GSI_Fortran_FLAGS "-DPOUND_FOR_STRINGIFY -fp-model strict -assume byterecl -convert big_endian -implicitnone -D_REAL8_ ${GSDCLOUDOPT} ${OMPFLAG} ${MPI_Fortran_COMPILE_FLAGS} -O3" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:      set(GSI_Fortran_FLAGS "-DPOUND_FOR_STRINGIFY -fp-model strict -assume byterecl -convert big_endian -implicitnone -D_REAL8_ ${GSDCLOUDOPT} ${OMPFLAG} ${MPI_Fortran_COMPILE_FLAGS} -O3" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:      set(GSI_Fortran_FLAGS "-DPOUND_FOR_STRINGIFY -O3 -fp-model source -assume byterecl -convert big_endian -g -traceback -D_REAL8_ ${GSDCLOUDOPT} ${OMPFLAG} ${MPI_Fortran_COMPILE_FLAGS}" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:    set(GSDCLOUD_Fortran_FLAGS "-O3 -convert big_endian" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:      set(GSI_Fortran_FLAGS "-DPOUND_FOR_STRINGIFY -O0 -fp-model source -convert big_endian -assume byterecl -implicitnone -mcmodel medium -shared-intel -g -traceback -debug -ftrapuv -check all,noarg_temp_created -fp-stack-check -fstack-protector -warn all,nointerfaces -convert big_endian -implicitnone -D_REAL8_ ${GSDCLOUDOPT} ${OMPFLAG} ${MPI_Fortran_COMPILE_FLAGS}" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:      set(GSI_Fortran_FLAGS "-DPOUND_FOR_STRINGIFY -O0 -fp-model strict -convert big_endian -assume byterecl -implicitnone -g -traceback -debug -ftrapuv -check all,noarg_temp_created  -fp-stack-check  -fstack-protector -warn all,nointerfaces -D_REAL8_ ${GSDCLOUDOPT} ${OMPFLAG} ${MPI_Fortran_COMPILE_FLAGS}" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:    set(GSDCLOUD_Fortran_FLAGS "-DPOUND_FOR_STRINGIFY -O3 -convert big_endian" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:  set(GSI_Fortran_FLAGS " -O3 -fconvert=big-endian -ffast-math -fno-second-underscore -frecord-marker=4 -funroll-loops -ggdb -static -Wall -fno-range-check -D_REAL8_ ${GSDCLOUDOPT} -fopenmp -ffree-line-length-0" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:  set(GSDCLOUD_Fortran_FLAGS "-O3 -fconvert=big-endian" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:  set(GSI_Fortran_FLAGS "-Minform=inform -O1 -byteswapio  -D_REAL8_ ${GSDCLOUDOPT} -mp -Mfree" PARENT_SCOPE)
+cmake/Modules/setCompilerFlags.cmake:  set(GSDCLOUD_Fortran_FLAGS "-O3 -byteswapio" PARENT_SCOPE)
+README.comgsi: GSD cloud analysis library only applies to regional GSI.
+README.comgsi:    cmake -DBUILD_GSDCLOUD_ARW=ON ..
+src/CMakeLists.txt:         ${GSI_LDFLAGS} ${NCDIAG_LIBRARIES} ${GSDCLOUD_LIBRARY} ${ZLIB_LIBRARIES} ${wrflib} ${EXTRA_LINKER_FLAGS} )
+src/blockIO.c:/* prgmmr:  middlecoff       org: gsd/esrl         date: 2006-04-27  */
